@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
@@ -14,7 +14,8 @@ const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./models/user.js")
+const User = require("./models/user.js");
+const port = process.env.PORT || 3000;
 
 // this is the route to use the funcanality of the express routes
 const listings = require("./routes/listing.js");
@@ -113,6 +114,6 @@ app.use((err, req, res, next) => {
     res.status(status).render("error.ejs", { message });
 });
 
-app.listen(3000, () => {
-    console.log("Server is runnig on port 3000");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
